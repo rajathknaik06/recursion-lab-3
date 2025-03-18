@@ -1,0 +1,43 @@
+""" You are tasked with developing a recursive function to count the number of consonants in a given string. A consonant is any letter of the alphabet that is not a vowel. 
+
+
+
+Your function should traverse the input string recursively and return the total count of consonants found.
+
+Input format :
+The input consists of a single line containing a string.
+
+Output format :
+The output consists of a single integer representing the count of consonants in the input string.
+
+
+
+Refer to the sample output for the formatting specifications.
+
+Code constraints :
+In this scenario, the test cases fall under the following constraints:
+
+1 ≤ length of the given string≤100
+
+The input string may include any printable ASCII characters."""
+
+
+def count_consonants(string):
+    # Base case: if the string is empty, return 0
+    if string == "":
+        return 0
+    else:
+        # Convert the first character to lowercase
+        first_char = string[0].lower()
+        # Check if the first character is a consonant (not a vowel and not a non-alphabetic character)
+        if first_char.isalpha() and first_char not in ['a', 'e', 'i', 'o', 'u']:
+            # If it's a consonant, return 1 (for the current consonant) + count_consonants(rest of the string)
+            return 1 + count_consonants(string[1:])
+        else:
+            # If it's not a consonant, simply return count_consonants(rest of the string)
+            return count_consonants(string[1:])
+
+# Test the function
+input_str = input()
+consonant_count = count_consonants(input_str)
+print(consonant_count)
